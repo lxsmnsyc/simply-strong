@@ -2,24 +2,24 @@
 import TypeCheckInterface from '../typecheck-interface';
 
 class Nullable extends TypeCheckInterface {
-  constructor(type) {
+  constructor(T) {
     super();
 
-    if (!(type instanceof TypeCheckInterface)) {
+    if (!(T instanceof TypeCheckInterface)) {
       throw new TypeError('Expected argument #1 to be a TypeCheckInterface instance.');
     }
 
-    this.type = type;
+    this.T = T;
   }
 
   is(value) {
     // eslint-disable-next-line valid-typeof
-    return value == null || this.type.is(value);
+    return value == null || this.T.is(value);
   }
 
   toString() {
-    return `Nullable(${this.type})`;
+    return `Nullable(${this.T})`;
   }
 }
 
-export default type => new Nullable(type);
+export default T => new Nullable(T);
