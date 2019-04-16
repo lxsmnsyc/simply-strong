@@ -2,9 +2,9 @@
 import TypeCheckInterface from '../typecheck-interface';
 
 class Super extends TypeCheckInterface {
-  constructor(classInstance) {
+  constructor(S) {
     super();
-    this.class = classInstance;
+    this.class = S;
   }
 
   is(value) {
@@ -16,4 +16,4 @@ class Super extends TypeCheckInterface {
   }
 }
 
-export default classInstance => new Super(classInstance);
+export default S => new Super(S);
