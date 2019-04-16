@@ -56,15 +56,3 @@ const sub = binumber((x, y) => x - y);
 const mul = binumber((x, y) => x * y);
 const div = binumber((x, y) => x / y);
 ```
-
-### Arrays
-
-### Objects
-
-### Sets
-
-### Maps
-
-### WeakMaps
-
-### 
