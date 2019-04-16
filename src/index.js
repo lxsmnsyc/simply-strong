@@ -1,4 +1,3 @@
-export { default as Def } from './types/def';
 
 export { default as TypedMap } from './types/data-structures/map';
 
