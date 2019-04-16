@@ -2,13 +2,11 @@ import { checkType, checkArgumentType } from '../utils';
 import TypeCheckInterface from '../typecheck-interface';
 
 class TypedMap extends TypeCheckInterface {
-  constructor(K, V) {
+  constructor(TMG) {
     super();
-    checkType(K, 1);
-    checkType(V, 2);
     this.actual = new Map();
-    this.K = K;
-    this.V = V;
+    this.K = TMG.K;
+    this.V = TMG.V;
   }
 
   get size() {
@@ -56,19 +54,36 @@ class TypedMap extends TypeCheckInterface {
     return this.actual.values();
   }
 
+  [Symbol.iterator]() {
+    return this.actual[Symbol.iterator]();
+  }
+}
+
+class TypedMapGenerics extends TypeCheckInterface {
+  constructor(K, V) {
+    super();
+    checkType(K, 1);
+    checkType(V, 2);
+    this.K = K;
+    this.V = V;
+  }
+
+  create() {
+    return new TypedMap(this);
+  }
+
   is(value) {
-    return value instanceof TypedMap
-      && this.K === value.K
-      && this.V === value.V;
+    return this.K === value.K && this.V === value.V;
   }
 
   toString() {
     return `TypedMap<${this.K}, ${this.V}>`;
   }
 
-  [Symbol.iterator]() {
-    return this.actual[Symbol.iterator]();
+  static get [Symbol.species]() {
+    return TypedMap;
   }
 }
 
-export default (key, value) => new TypedMap(key, value);
+
+export default (K, V) => new TypedMapGenerics(K, V);
