@@ -2,25 +2,25 @@
 import TypeCheckInterface from '../typecheck-interface';
 
 class Compose extends TypeCheckInterface {
-  constructor(...types) {
+  constructor(...T) {
     super();
     let i = 0;
-    for (const type of types) {
+    for (const type of T) {
       i += 1;
       if (!(type instanceof TypeCheckInterface)) {
         throw new TypeError(`Expected argument #${i} to be a TypeCheckInterface instance.`);
       }
     }
 
-    this.types = types;
+    this.T = T;
 
-    const typeTag = types.reduce((acc, x) => `${acc}, ${x}`);
+    const typeTag = T.reduce((acc, x) => `${acc}, ${x}`);
     this.typeTag = `Compose(${typeTag})`;
   }
 
   is(value) {
     // eslint-disable-next-line valid-typeof
-    for (const type of this.types) {
+    for (const type of this.T) {
       if (!type.is(value)) {
         return false;
       }
@@ -33,4 +33,4 @@ class Compose extends TypeCheckInterface {
   }
 }
 
-export default (...types) => new Compose(...types);
+export default (...T) => new Compose(...T);
