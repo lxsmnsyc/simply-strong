@@ -1,6 +1,6 @@
 # simply-strong
 
-simple strongly-typed for JS
+simple strongly-typed objects for JS
 
 ## Types
 
