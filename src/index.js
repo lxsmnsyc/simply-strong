@@ -1,5 +1,6 @@
 export { default as Def } from './types/def';
-export { default as TypedArray } from './types/array';
+
+export { default as TypedMap } from './types/data-structures/map';
 
 export { default as Compose } from './types/composition/compose';
 export { default as Either } from './types/composition/either';
