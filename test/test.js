@@ -1,13 +1,13 @@
 import { TypedMap, Types, Def } from '../src';
 
-const example = TypedMap(Types.String, Types.Number);
+const StringNumMap = TypedMap(Types.String, Types.Number);
 
+const MapNumMap = TypedMap(StringNumMap, Types.Number);
 
-const test = Def(TypedMap(Types.String, Types.Number))(Types.Boolean)(
-  (x) => {
-    x.set('Test', 100);
-    return true;
-  },
-);
+const example = StringNumMap.create();
 
-test([]);
+const mnm = MapNumMap.create();
+
+mnm.set(example, 100);
+
+console.log(mnm.get(example));
