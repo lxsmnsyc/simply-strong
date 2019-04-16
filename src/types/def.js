@@ -1,13 +1,14 @@
+import { checkArgumentType } from "./utils";
+
 /* eslint-disable func-names */
 /* eslint-disable no-restricted-syntax */
 export default (...types) => returnType => body => function (...args) {
   let i = 0;
-  for (const arg of args) {
+
+  const tmp = args.slice(0);
+  for (const type of types) {
     i += 1;
-    const type = types.shift();
-    if (!type.is(arg)) {
-      throw new TypeError(`Expected argument #${i} of type "${type.toString()}"`);
-    }
+    checkArgumentType(tmp.shift(), type, i);
   }
 
   const result = body.apply(this, args);
