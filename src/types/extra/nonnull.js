@@ -6,6 +6,10 @@ import TypeCheckInterface from '../typecheck-interface';
  * @ignore
  */
 class NonNull extends TypeCheckInterface {
+  equals(other) {
+    return other === this;
+  }
+
   is(value) {
     return value != null;
   }
