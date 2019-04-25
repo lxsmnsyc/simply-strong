@@ -9,6 +9,10 @@ class Except extends TypeCheckInterface {
     this.T = T;
   }
 
+  equals(other) {
+    return other instanceof Except && this.T === other.T;
+  }
+
   is(value) {
     // eslint-disable-next-line valid-typeof
     return !this.T.is(value);
