@@ -34,13 +34,17 @@ Pseudo Types are types that are usually defined by their signature property. Pse
 * `Thenable`
 * `AsyncIterable`
 * `NonNull`
+* `Any`
 
 ### Type Annotations
  
 Type Annotations are types that wraps the given type with another behavior or explicitly describes a new type.
 
 * `Class` converts a class instance into a Type.
-* `Nullable` converts a type into a nullable/omitable type.
+* `Extends` converts a class instance into a Type instance that checks if the given instance is that of the class but not directly from that class.
+* `Super` converts a class instance into a Type instance that checks if the given instance is that of the class that is the exact parent class.
+* `Nullable` converts a type into a nullable/omitable/optional type.
+* `Except` accepts any other types other than the given type.
 
 ## Strict Objects
 
@@ -56,3 +60,7 @@ const sub = binumber((x, y) => x - y);
 const mul = binumber((x, y) => x * y);
 const div = binumber((x, y) => x / y);
 ```
+
+### Typed Maps
+
+using `TypedMap` allows strict-typed keys and values for a `Map`.
