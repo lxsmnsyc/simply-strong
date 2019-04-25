@@ -7,6 +7,10 @@ import { isObject, isFunction } from '../utils';
  * @ignore
  */
 class Thenable extends TypeCheckInterface {
+  equals(other) {
+    return other === this;
+  }
+
   is(value) {
     return !!value
       && (isObject(value) || isFunction(value))
