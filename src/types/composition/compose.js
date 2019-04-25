@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import TypeCheckInterface from '../typecheck-interface';
+import { checkType } from '../utils';
 
 class Compose extends TypeCheckInterface {
   constructor(...T) {
@@ -7,9 +8,7 @@ class Compose extends TypeCheckInterface {
     let i = 0;
     for (const type of T) {
       i += 1;
-      if (!(type instanceof TypeCheckInterface)) {
-        throw new TypeError(`Expected argument #${i} to be a TypeCheckInterface instance.`);
-      }
+      checkType(type, i);
     }
 
     this.T = T;
