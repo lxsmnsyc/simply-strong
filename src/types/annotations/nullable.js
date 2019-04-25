@@ -9,6 +9,10 @@ class Nullable extends TypeCheckInterface {
     this.T = T;
   }
 
+  equals(other) {
+    return other instanceof Nullable && (this === other || this.T.equals(other.T));
+  }
+
   is(value) {
     // eslint-disable-next-line valid-typeof
     return value == null || this.T.is(value);
