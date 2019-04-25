@@ -19,7 +19,7 @@ class Except extends TypeCheckInterface {
   }
 
   toString() {
-    return `Except(${this.T})`;
+    return `!${this.T}`;
   }
 }
 
