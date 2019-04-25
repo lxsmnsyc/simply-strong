@@ -73,7 +73,7 @@ class TypedMapGenerics extends TypeCheckInterface {
   }
 
   is(value) {
-    return this.K === value.K && this.V === value.V;
+    return this.K.is(value.K) && this.V.is(value.V);
   }
 
   toString() {
