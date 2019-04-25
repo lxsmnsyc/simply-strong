@@ -13,8 +13,8 @@ class Compose extends TypeCheckInterface {
 
     this.T = T;
 
-    const typeTag = T.reduce((acc, x) => `${acc}, ${x}`);
-    this.typeTag = `Compose(${typeTag})`;
+    const typeTag = T.reduce((acc, x) => `${acc} & ${x}`);
+    this.typeTag = `${typeTag}`;
   }
 
   equals(other) {
