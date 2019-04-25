@@ -19,7 +19,7 @@ class Nullable extends TypeCheckInterface {
   }
 
   toString() {
-    return `Nullable(${this.T})`;
+    return `${this.T}?`;
   }
 }
 
