@@ -1,14 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 import TypeCheckInterface from '../typecheck-interface';
+import { checkType } from '../utils';
 
 class Nullable extends TypeCheckInterface {
   constructor(T) {
     super();
-
-    if (!(T instanceof TypeCheckInterface)) {
-      throw new TypeError('Expected argument #1 to be a TypeCheckInterface instance.');
-    }
-
+    checkType(T, 1);
     this.T = T;
   }
 
