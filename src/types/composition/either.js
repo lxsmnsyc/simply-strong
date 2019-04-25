@@ -13,8 +13,8 @@ class Either extends TypeCheckInterface {
 
     this.T = T;
 
-    const typeTag = T.reduce((acc, x) => `${acc}, ${x}`);
-    this.typeTag = `Either(${typeTag})`;
+    const typeTag = T.reduce((acc, x) => `${acc} | ${x}`);
+    this.typeTag = `${typeTag}`;
   }
 
   equals(other) {
