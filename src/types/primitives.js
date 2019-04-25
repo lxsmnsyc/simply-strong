@@ -8,6 +8,10 @@ class Type extends TypeCheckInterface {
     this.typeName = typeName;
   }
 
+  equals(other) {
+    return other instanceof Type && (other === this || this.typeName === other.typeName);
+  }
+
   is(value) {
     // eslint-disable-next-line valid-typeof
     return typeof value === this.typeName;
