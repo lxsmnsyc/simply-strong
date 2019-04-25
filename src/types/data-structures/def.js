@@ -18,7 +18,7 @@ class Def extends TypeCheckInterface {
     this.PTs = PTs;
     this.RT = RT;
 
-    this.typeTag = `Def(${[...PTs, RT].reduce((acc, x) => `${acc} => ${x}`)})`;
+    this.typeTag = `(${PTs.reduce((acc, x) => `${acc}, ${x}`)}) => ${RT}`;
   }
 
   create(fn) {
