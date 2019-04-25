@@ -1,13 +1,11 @@
 import TypeCheckInterface from './typecheck-interface';
+import { assert, isString } from './utils';
 
 class Type extends TypeCheckInterface {
   constructor(typeName) {
     super();
-    if (typeof typeName === 'string') {
-      this.typeName = typeName;
-    } else {
-      throw new TypeError('argument string expected');
-    }
+    assert(isString(typeName), 'Expected argument #1 to be a string.');
+    this.typeName = typeName;
   }
 
   is(value) {
