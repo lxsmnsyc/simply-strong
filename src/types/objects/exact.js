@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable eol-last */
 import TypeCheckInterface from '../typecheck-interface';
-import { isObject, assert } from '../utils';
+import { isObject, assert, zip } from '../utils';
 
 class Exact extends TypeCheckInterface {
   constructor(structure) {
@@ -19,6 +19,13 @@ class Exact extends TypeCheckInterface {
     }, {});
 
     this.typeTag = `Exact${JSON.stringify(tag)}`;
+  }
+
+  equals(other) {
+    return other instanceof Exact && (this === other || zip(
+      Object.entries(this.structure),
+      Object.entries(other.structure),
+    ).reduce((acc, [a, b]) => acc && a[0] === b[0] && a[1].equals(b[1]), true));
   }
 
   is(value) {
