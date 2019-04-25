@@ -18,3 +18,8 @@ export const checkType = (type, number) => assert(
   type instanceof TypeCheckInterface,
   `Expected argument #${number} to be a TypeCheckInterface instance.`,
 );
+
+
+export const zip = (...args) => args
+  .reduce((a, b) => (a.length > b.length ? a : b))
+  .map((_, i) => args.map(arr => arr[i]));
