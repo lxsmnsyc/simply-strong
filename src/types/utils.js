@@ -1,13 +1,20 @@
+/* eslint-disable valid-typeof */
 import TypeCheckInterface from './typecheck-interface';
 
-export const checkType = (type, number) => {
-  if (!(type instanceof TypeCheckInterface)) {
-    throw new TypeError(`Expected argument #${number} to be a TypeCheckInterface instance.`);
+const typeOf = y => x => typeof x === y;
+
+export const isFunction = typeOf('function');
+export const isObject = typeOf('object');
+export const isString = typeOf('string');
+
+export const assert = (cond, message) => {
+  if (!cond) {
+    throw new TypeError(message);
   }
 };
 
-export const checkArgumentType = (value, type, number) => {
-  if (!(type.is(value))) {
-    throw new TypeError(`Expected argument #${number} to be of type "${type}"`);
-  }
-};
+
+export const checkType = (type, number) => assert(
+  type instanceof TypeCheckInterface,
+  `Expected argument #${number} to be a TypeCheckInterface instance.`,
+);
