@@ -4,16 +4,9 @@
  * @interface
  */
 export default class TypeCheckInterface {
-  /**
-   *
-   * @param {any} value
-   * @returns {boolean}
-   * @abstract
-   */
   is(value) { }
 
-  /**
-   * @returns {string}
-   */
+  equals(other) {}
+
   toString() {}
 }
