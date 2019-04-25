@@ -7,9 +7,7 @@ import TypeCheckInterface from '../typecheck-interface';
  */
 class NonNull extends TypeCheckInterface {
   is(value) {
-    return !!value
-      && (typeof value === 'object' || typeof value === 'function')
-      && typeof value.then === 'function';
+    return value != null;
   }
 
   toString() {
