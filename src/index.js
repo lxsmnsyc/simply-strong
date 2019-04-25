@@ -5,9 +5,9 @@ export { default as Compose } from './types/composition/compose';
 export { default as Either } from './types/composition/either';
 
 export { default as Nullable } from './types/annotations/nullable';
-export { default as Class } from './types/annotations/class';
-export { default as Super } from './types/annotations/super';
-export { default as Extends } from './types/annotations/extends';
+export { default as Class } from './types/class/class';
+export { default as Super } from './types/class/super';
+export { default as Extends } from './types/class/extends';
 export { default as Except } from './types/annotations/except';
 
 export { default as Iterable } from './types/extra/iterable';
