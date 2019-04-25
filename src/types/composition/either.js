@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import TypeCheckInterface from '../typecheck-interface';
-import { checkArgumentType } from '../utils';
+import { checkType } from '../utils';
 
 class Either extends TypeCheckInterface {
   constructor(...T) {
@@ -8,7 +8,7 @@ class Either extends TypeCheckInterface {
     let i = 0;
     for (const type of T) {
       i += 1;
-      checkArgumentType(type, TypeCheckInterface, i);
+      checkType(type, i);
     }
 
     this.T = T;
