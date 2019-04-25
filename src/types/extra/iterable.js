@@ -7,6 +7,10 @@ import { isFunction } from '../utils';
  * @ignore
  */
 class Iterable extends TypeCheckInterface {
+  equals(other) {
+    return other === this;
+  }
+
   is(value) {
     return value != null && isFunction(value[Symbol.iterator]);
   }
