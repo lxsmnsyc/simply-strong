@@ -1,8 +1,12 @@
-import { Like, Types, Exact, Def } from '../src';
+import { Types, Either, Like } from '../src';
 
-const binomial = Def(Types.Number, Like({
-  name: Types.String,
-  age: Types.Number,
-}))(Types.Number);
+const A = Like({
+  a: Types.Boolean,
+  b: Types.String,
+});
+const B = Like({
+  a: Types.Boolean,
+  b: Types.String,
+});
 
-console.log(binomial.toString());
+console.log(A.equals(B), B.equals(A));
