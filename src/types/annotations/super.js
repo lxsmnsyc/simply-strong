@@ -4,15 +4,19 @@ import TypeCheckInterface from '../typecheck-interface';
 class Super extends TypeCheckInterface {
   constructor(S) {
     super();
-    this.class = S;
+    this.S = S;
+  }
+
+  equals(other) {
+    return other instanceof Super && this.S === other.S;
   }
 
   is(value) {
-    return value.prototype.constructor === this.class;
+    return value.prototype.constructor === this.S;
   }
 
   toString() {
-    return `Super(${this.class.name})`;
+    return `Super(${this.S.name})`;
   }
 }
 
