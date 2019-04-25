@@ -7,6 +7,10 @@ import TypeCheckInterface from '../typecheck-interface';
  * @ignore
  */
 class Any extends TypeCheckInterface {
+  equals(other) {
+    return other === this;
+  }
+
   is(value) {
     return true;
   }
