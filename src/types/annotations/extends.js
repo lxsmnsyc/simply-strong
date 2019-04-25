@@ -4,15 +4,19 @@ import TypeCheckInterface from '../typecheck-interface';
 class Extends extends TypeCheckInterface {
   constructor(E) {
     super();
-    this.class = E;
+    this.E = E;
+  }
+
+  equals(other) {
+    return other instanceof Extends && this.E === other.E;
   }
 
   is(value) {
-    return value.prototype instanceof this.class;
+    return value.prototype instanceof this.E;
   }
 
   toString() {
-    return `Extends(${this.class.name})`;
+    return `Extends(${this.E.name})`;
   }
 }
 
