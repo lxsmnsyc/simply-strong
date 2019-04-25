@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import TypeCheckInterface from '../typecheck-interface';
-import { checkType } from '../utils';
+import { checkType, zip } from '../utils';
 
 class Either extends TypeCheckInterface {
   constructor(...T) {
@@ -15,6 +15,11 @@ class Either extends TypeCheckInterface {
 
     const typeTag = T.reduce((acc, x) => `${acc}, ${x}`);
     this.typeTag = `Either(${typeTag})`;
+  }
+
+  equals(other) {
+    return other instanceof Either
+      && (other === this || zip(this.T, other.T).reduce((acc, [x, y]) => acc && x.equals(y), true));
   }
 
   is(value) {
