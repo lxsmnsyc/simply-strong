@@ -1,6 +1,6 @@
 # simply-strong
 
-simple run-time type system for JS
+simple run-time type system for JS, good for type guarding and assertions.
 
 ## Types
 
@@ -117,4 +117,128 @@ const ThenableAndNotPromise = Compose(Thenable, Except(Class(Promise)));
 
 ThenableAndNotPromise.is({ then: () => console.log('Hello World')); // true
 ThenableAndNotPromise.is(Promise.resolve()); // false
+```
+
+### Def
+
+`Def` allows you to describe a function type with a given parameter types and a return type.
+
+```js
+const BiFunction = Def(Types.Number, Types.Number)(Types.Number);
+```
+
+You can wrap functions with the defined function type.
+
+```js
+const BiFunction = Def(Types.Number, Types.Number)(Types.Number);
+
+const add = BiFunction.create((x, y) => x + y);
+
+add(1, 2); //3
+```
+
+Wrapped functions will throw TypeErrors if there is an argument type mismatch as well as a return type mismatch.
+
+### Typed Objects
+
+Soon to be implemented:
+* Set<T>
+* Map<K, T>
+* WeakMap<K, T>
+* Array<T>
+* Promise<T>
+
+## Custom Type
+
+`simply-strong` provides an interface class on which all `simply-strong` functions implements internally.
+
+```js
+class TypeCheckInterface {
+  /**
+   * Checks if the value is of this type.
+   */
+  is(value) { }
+  /**
+   * Checks if the this instance is similar to the other instance.
+   */
+  equals(other) {}
+  /**
+   * Returns a string representation of this type.
+   */
+  toString() {}
+}
+```
+### Importing
+
+#### CommonJS
+
+```js
+const { Interface } = require('simply-strong');
+```
+
+#### ESNext
+
+```js
+import { Interface } from 'simply-strong';
+```
+
+#### Browser
+
+```js
+const { Interface } = SS;
+```
+
+### Defining your own Type
+
+Example definition of a type.
+```js
+class Thirteen extends Interface {
+  is(value) {
+    return value === 13;
+  }
+
+  equals(other) {
+    return this === other;
+  }
+
+  toString() {
+    return 'Thirteen';
+  }
+}
+```
+
+Then we can use it like this:
+
+```js
+const ThirteenOrString = Either(new Thirteen(), Types.String);
+
+ThirteenOrString.is(13); // true
+ThirteenOrString.is(14); // false
+```
+
+It is ideal to provide a single instance if the custom type only provides uncustomized functionality when instanciating.
+
+```js
+const Thirteen = new (class extends Interface {
+  is(value) {
+    return value === 13;
+  }
+
+  equals(other) {
+    return this === other;
+  }
+
+  toString() {
+    return 'Thirteen';
+  }
+})();
+```
+
+Then we can use it like this:
+
+```js
+const ThirteenOrString = Either(Thirteen, Types.String);
+
+ThirteenOrString.is(13); // true
+ThirteenOrString.is(14); // false
 ```
