@@ -14,7 +14,6 @@ class Class extends TypeCheckInterface {
 
   is(value) {
     return isObject(value)
-      && isObject(value.prototype)
       && value instanceof this.C;
   }
 
